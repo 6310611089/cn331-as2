@@ -1,0 +1,32 @@
+{% extends 'homepage/components/base.html' %}
+
+{% block site_title %}หน้าแรก{% endblock %}
+
+{% block content %}
+<section class="home-landing-section">
+    <h1>ยินดีต้อนรับสู่ระบบขอโควต้า</h1>
+    <p>คลิกเพื่อเข้าสู่ระบบ</p>    
+    <div>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <p>
+                <button class="button button-primary" type="submit">สำหรับนักศึกษา</button>
+            </p>
+        </form>
+        <form action="{% url 'admin:index' %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <p>
+                <button class="button button-primary" type="submit">สำหรับแอดมิน</button>
+            </p>
+        </form>
+    </div>
+</section>
+{% endblock %}

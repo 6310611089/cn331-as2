@@ -1,0 +1,46 @@
+{% extends 'homepage/components/base.html' %}
+
+{% block site_title %}รายชื่อวิชาที่เปิดขอโควต้า{% endblock %}
+
+{% block content %}
+<section class="content-section">
+    <h1>รายชื่อวิชาที่เปิดขอโควต้า</h1>
+    <table class="table table-bordered" cellpadding="12">
+        <td><h3>รหัสวิชา</h3></td>
+        <td><h3>ชื่อวิชา</h3></td>
+        <td><h3>ภาคการศึกษา</h3></td>
+        <td><h3>ปีการศึกษา</h3></td>
+        <td><h3>จำนวนที่นั่ง</h3></td>
+        <td><h3>สถานะ</h3></td>
+        {% for subject in course %}
+        <tr>
+            <td>{{ subject.subID }}</td>
+            <td>{{ subject.subName }}</td>
+            <td>{{ subject.semester }}</td>
+            <td>{{ subject.year }}</td>
+            <td>{{ subject.seat }}</td>
+            <td>{{ subject.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+<form accept="{% url 'apply' %}" method="post">
+    <h1>ขอโควต้า</h1>
+    {% for subject in course %}
+        <div style="margin-bottom: 16px;">
+            <input type="checkbox"> <label>{{ subject.subID }}:</label> 
+            <a>{{ subject.subName }}</a>
+        </div>
+    {% endfor %}
+</form>
+    <form action="{% url 'apply' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if request.GET.next %}
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+        <p>
+            <button class="button button-primary" type="submit">ยืนยัน</button>
+        </p>
+    </form>
+</section>
+{% endblock %} 

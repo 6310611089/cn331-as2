@@ -1,0 +1,11 @@
+{% load static %}
+<header class="site-header">
+    {% if user.is_authenticated %}
+        <a class="site-header-item" href="{% url 'info' %}">
+            <span>{{ user.username }}</span>
+        </a>
+        <a class="site-header-item" href="{% url 'logout' %}">
+            <span>ออกจากระบบ</span>
+        </a>    
+    {% endif %}
+</header>

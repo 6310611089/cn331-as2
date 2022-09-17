@@ -1,0 +1,59 @@
+/* mitr-regular - thai_latin */
+@font-face {
+    font-family: 'Mitr';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+        url('fonts/mitr-v11-thai_latin-regular.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('fonts/mitr-v11-thai_latin-regular.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* mitr-600 - thai_latin */
+@font-face {
+    font-family: 'Mitr';
+    font-style: normal;
+    font-weight: 600;
+    src: local(''),
+        url('fonts/mitr-v11-thai_latin-600.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url('fonts/mitr-v11-thai_latin-600.woff') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html {
+    font-family: 'Mitr', sans-serif;
+}
+
+.button {
+    color:white;
+    background-color:darkred;
+    border: none;
+    border-radius: 7px;
+    line-height: 1.5;
+    display: inline-block;
+}
+
+.content-section {
+    padding: 20px 50px;
+}
+
+.site-header {
+    background-color: black;
+    border-bottom: 1px snow;
+    box-shadow: silver;
+    display: flex;
+    justify-content: flex-start;
+    height: 50px;
+}
+
+.site-header-item {
+    color:white;
+    background-color: rgba(0, 0, 0, 0);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;   
+}
+
+.home-landing-section {
+    background-color:azure;
+    text-align: center;
+    padding: 100px;
+}

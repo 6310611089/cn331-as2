@@ -1,0 +1,41 @@
+{% extends "subjects/layout.html" %}
+{% block body %}
+<h1>Quota Enrollment</h1>
+
+<table class="table table-bordered" cellpadding="12">
+    <th>SUBJECTS</th>
+    <th>SEMESTER</th>
+    <th>SEAT</th>
+    <th>STATUS</th>
+    {% for subject in subjects %}
+    <tr>
+        <td>{{ subject.sub_id }} ({{ subject.sub_name }})</td>
+        <td>{{ subject.semester}}/{{ subject.year }}</td>
+        <td>{{ subject.seat }}</td>
+        <td>{{ subject.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h1>Add Quota</h1>
+<form action="{% url 'subjects:index' %}" method="POST">
+    {% csrf_token %}
+    <select name="subject">
+        {% for subject in subjects %}
+            <option value="{{ subject.sub_id }}">{{ subject }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Add">
+</form>
+
+<form action="{% url 'index' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    {% endif %}
+    <p>
+        <button class="button button-primary" type="submit">BACK</button>
+    </p>
+</form>
+{% endblock %}

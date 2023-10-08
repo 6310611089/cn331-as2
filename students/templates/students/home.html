@@ -16,16 +16,18 @@
             </tr>
         </thead>
         <tbody>
+            <!-- {% for course in request.user.student.registered_courses.all %}
             <tr>
-                <th scope="row">1</th>
-                <td>SOFTWARE ENGINEERING</td>
-                <td>1</td>
-                <td>2023</td>
-                <td>20</td>
-                <td>APPROVED</td>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.semester }}</td>
+                <td>{{ course.year }}</td>
+                <td>{{ course.seat }}</td>
+                <td>{{ course.get_course_status_display }}</td>
             </tr>
+            {% endfor %} -->
         </tbody>
     </table>
-    <a class="btn btn-dark" href="#">Register</a>
+    <a class="btn btn-dark" href="{% url 'register' %}">Register</a>
 </div>
 {% endblock %}

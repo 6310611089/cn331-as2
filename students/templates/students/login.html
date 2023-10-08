@@ -17,26 +17,16 @@
     <link rel="stylesheet" href="{% static 'students/style.css' %}">
 </head>
 
-<body>
-    <div class="login-body">
-        <div class="login-title">
-            <h1>Quota Registration</h1>
-        </div>
-        <div class="login-form">
-            <h2>Sign In</h2>
-            <form action="#">
-                <div class="mb-3">
-                    <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control">
-                </div>
-                <button type="submit" class="btn btn-dark">Sign In</button>
-            </form>
-        </div>
-    </div>
-</body>
+{% block body %}
+{% if message %}
+{{ message }}
+{% endif %}
+<form action="{% url 'home' %}" method="post">
+    {% csrf_token %}
+    <input type="text" name="username" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <input type="submit" value="login">
+</form>
+{% endblock %}
 
 </html>

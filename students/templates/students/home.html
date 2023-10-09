@@ -2,30 +2,40 @@
 
 {% block body %}
 <div class="home-body">
-    <h2>Welcome, </h1>
+    <h2>Welcome, {{ request.user.first_name }} {{ request.user.last_name }}</h1>
     <table class="table table-hover caption-top">
         <caption>Your Courses</caption>
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Course</th>
-                <th scope="col">Semester</th>
-                <th scope="col">Year</th>
-                <th scope="col">Seat</th>
                 <th scope="col">Status</th>
+                <th scope="col">Cancel</th>
             </tr>
         </thead>
         <tbody>
+            {% for course in user_courses %}
             <tr>
-                <th scope="row">1</th>
-                <td>SOFTWARE ENGINEERING</td>
-                <td>1</td>
-                <td>2023</td>
-                <td>20</td>
-                <td>APPROVED</td>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ course }}</td>
+                {% if course.course_approved %}
+                <td class="text-success">APPROVED</td>
+                {% else %}
+                <td class="text-warning">PENDING</td> 
+                {% endif %}
+
+                {% if not course.course_approved %}
+                <td>
+                    <form method="post" action="{% url 'cancel_request' course.id %}">
+                        {% csrf_token %}
+                        <button class="btn btn-danger" type="submit">Cancel</button>
+                    </form>
+                </td>
+                {% endif %}
             </tr>
+            {% endfor %}
         </tbody>
     </table>
-    <a class="btn btn-dark" href="#">Register</a>
+    <a class="btn btn-dark" href="{% url 'register' %}">Register</a>
 </div>
 {% endblock %}

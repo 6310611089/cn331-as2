@@ -48,13 +48,12 @@ def request_quota(request, course_id):
 def cancel_request(request, course_id):
     if not request.user.is_authenticated:
         return HttpResponseRedirect(reverse('login'))
-
-    course = Course.objects.get(id=course_id)
-
-    quota_request = QuotaRequest.objects.filter(student=request.user, course=course).first()
-    quota_request.delete()
-
+    
+    requested_course = QuotaRequest.objects.get(id=course_id)
+    course = Course.objects.get(id=requested_course.course.id)
     course.seat += 1
+
     course.save()
+    requested_course.delete()
 
     return redirect('home')

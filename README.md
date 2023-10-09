@@ -11,4 +11,4 @@
 
 ## Link Demo
 
-[Click] (https://youtu.be/E556zwAAayI)
+[Click](https://youtu.be/E556zwAAayI)

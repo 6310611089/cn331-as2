@@ -6,9 +6,9 @@ from django.contrib.auth.models import User
 class Course(models.Model):
     course_id = models.CharField(max_length=10, unique=True)
     course_name = models.CharField(max_length=60, unique=True)
-    semester = models.IntegerField()
-    year = models.IntegerField()
-    seat = models.IntegerField()
+    semester = models.IntegerField(null=True)
+    year = models.IntegerField(null=True)
+    seat = models.IntegerField(null=True)
     course_open = models.BooleanField(default=True)
 
     def __str__(self):
